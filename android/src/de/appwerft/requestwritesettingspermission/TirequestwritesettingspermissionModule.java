@@ -69,11 +69,11 @@ public class TirequestwritesettingspermissionModule extends KrollModule {
         if (hasStoragePermission()) {
             return;
         }
-        // TODO  ???
-        if (TiBaseActivity.systemwriteCallbackContext == null) {
-            TiBaseActivity.systemwriteContext = getKrollObject();
+        // TODO  ??? // here stopps compiler with TiBaseActivity.writeSettingsContext cannot find symbol
+        if (TiBaseActivity.writeSettingsCallbackContext == null) {
+            TiBaseActivity.writeSettingsCallbackContext =  getKrollObject();
         }
-        TiBaseActivity.systemwritePermissionCallback = permissionCallback;
+        TiBaseActivity.writeSettingsPermissionCallback = permissionCallback;
         String[] permissions = null;
         permissions = new String[] {Manifest.permission.WRITE_SETTINGS};
         
