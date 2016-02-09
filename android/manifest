@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 2
+architectures: armeabi armeabi-v7a x86
+description: tirequestsystemwritepermission
+author: AppWerft
+license: Specify your license
+copyright: Copyright (c) 2016 by Your Company
+
+# these should not be edited
+name: tirequestsystemwritepermission
+moduleid: de.appwerft.requestsystemwritepermission
+guid: 7bae8bf1-7fc4-4d3e-836a-56d793cee782
+platform: android
+minsdk: 5.1.0.GA
