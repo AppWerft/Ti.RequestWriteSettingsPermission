@@ -6,31 +6,42 @@
  * Please see the LICENSE included with this distribution for details.
  *
  */
-package de.appwerft.requestsystemwritepermission;
+package de.appwerft.requestwritesettingspermission;
 
+import org.appcelerator.kroll.KrollFunction;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
+import org.appcelerator.titanium.TiApplication;
+import org.appcelerator.titanium.TiBaseActivity;
+import org.appcelerator.titanium.TiC;
+import org.appcelerator.kroll.common.Log;
+import org.appcelerator.kroll.common.TiConfig;
+
 
 import org.appcelerator.titanium.TiApplication;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.kroll.common.TiConfig;
+
+
 import android.Manifest;
+import android.Manifest.permission;
+
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
 
-@Kroll.module(name="Tirequestsystemwritepermission", id="de.appwerft.requestsystemwritepermission")
-public class TirequestsystemwritepermissionModule extends KrollModule {
+@Kroll.module(name="Tirequestwritesettingspermission", id="de.appwerft.requestwritesettingspermission")
+public class TirequestwritesettingspermissionModule extends KrollModule {
 
 	// Standard Debugging variables
-	private static final String LCAT = "TirequestsystemwritepermissionModule";
+	private static final String LCAT = "TirequestwritesettingspermissionModule";
 	private static final boolean DBG = TiConfig.LOGD;
 
 	// You can define constants with @Kroll.constant, for example:
 	// @Kroll.constant public static final String EXTERNAL_NAME = value;
 
-	public TirequestsystemwritepermissionModule() {
+	public TirequestwritesettingspermissionModule() {
 		super();
 	}
 
@@ -47,15 +58,14 @@ public class TirequestsystemwritepermissionModule extends KrollModule {
             return true;
         }
         Activity currentActivity = TiApplication.getInstance().getCurrentActivity();
-        if (currentActivity.checkSelfPermission(Manifest.permission.WRITE_SYSTEM) == PackageManager.PERMISSION_GRANTED) {
+        if (currentActivity.checkSelfPermission(Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
         return false;
     }
     
     @Kroll.method
-    public void requestSystemWritePermissions(@Kroll.argument(optional=true)KrollFunction permissionCallback)
-    {
+    public void requestSystemWritePermissions(@Kroll.argument(optional=true)KrollFunction permissionCallback) {
         if (hasStoragePermission()) {
             return;
         }
@@ -65,12 +75,12 @@ public class TirequestsystemwritepermissionModule extends KrollModule {
         }
         TiBaseActivity.systemwritePermissionCallback = permissionCallback;
         String[] permissions = null;
-        permissions = new String[] {Manifest.permission.WRITE_SYSTEM};
+        permissions = new String[] {Manifest.permission.WRITE_SETTINGS};
         
         
         Activity currentActivity = TiApplication.getInstance().getCurrentActivity();
         // TODO  ????
-        currentActivity.requestPermissions(permissions, TiC.PERMISSION_SYSTEM_WRITE);
+        currentActivity.requestPermissions(permissions, TiC.PERMISSION_WRITE_SETTINGS);
         
     }
 
