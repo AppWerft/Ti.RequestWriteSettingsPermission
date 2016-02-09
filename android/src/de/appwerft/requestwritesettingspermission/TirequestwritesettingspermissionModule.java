@@ -65,11 +65,11 @@ public class TirequestwritesettingspermissionModule extends KrollModule {
     }
     
     @Kroll.method
-    public void requestSystemWritePermissions(@Kroll.argument(optional=true)KrollFunction permissionCallback) {
+    public void requestWriteSettingsPermissions(@Kroll.argument(optional=true)KrollFunction permissionCallback) {
         if (hasStoragePermission()) {
             return;
         }
-        // TODO  ??? // here stopps compiler with TiBaseActivity.writeSettingsContext cannot find symbol
+        // TODO  ??? // here stopps compiler with TiBaseActivity.writeSettingsCallbackContext cannot find symbol
         if (TiBaseActivity.writeSettingsCallbackContext == null) {
             TiBaseActivity.writeSettingsCallbackContext =  getKrollObject();
         }
