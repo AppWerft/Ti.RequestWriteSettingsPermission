@@ -47,7 +47,7 @@ public class TirequestsystemwritepermissionModule extends KrollModule {
             return true;
         }
         Activity currentActivity = TiApplication.getInstance().getCurrentActivity();
-        if (currentActivity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+        if (currentActivity.checkSelfPermission(Manifest.permission.WRITE_SYSTEM) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
         return false;
@@ -59,18 +59,18 @@ public class TirequestsystemwritepermissionModule extends KrollModule {
         if (hasStoragePermission()) {
             return;
         }
-        // TODO
-        if (TiBaseActivity.cameraCallbackContext == null) {
-            TiBaseActivity.cameraCallbackContext = getKrollObject();
+        // TODO  ???
+        if (TiBaseActivity.systemwriteCallbackContext == null) {
+            TiBaseActivity.systemwriteContext = getKrollObject();
         }
-        TiBaseActivity.cameraPermissionCallback = permissionCallback;
+        TiBaseActivity.systemwritePermissionCallback = permissionCallback;
         String[] permissions = null;
         permissions = new String[] {Manifest.permission.WRITE_SYSTEM};
         
         
         Activity currentActivity = TiApplication.getInstance().getCurrentActivity();
-        // TODO
-        currentActivity.requestPermissions(permissions, TiC.PERMISSION_CODE_CAMERA);
+        // TODO  ????
+        currentActivity.requestPermissions(permissions, TiC.PERMISSION_SYSTEM_WRITE);
         
     }
 
