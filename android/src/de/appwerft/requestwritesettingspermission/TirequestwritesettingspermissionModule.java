@@ -30,16 +30,12 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-
 @Kroll.module(name="Tirequestwritesettingspermission", id="de.appwerft.requestwritesettingspermission")
 public class TirequestwritesettingspermissionModule extends KrollModule {
 
 	// Standard Debugging variables
 	private static final String LCAT = "TirequestwritesettingspermissionModule";
 	private static final boolean DBG = TiConfig.LOGD;
-
-	// You can define constants with @Kroll.constant, for example:
-	// @Kroll.constant public static final String EXTERNAL_NAME = value;
 
 	public TirequestwritesettingspermissionModule() {
 		super();
@@ -48,10 +44,8 @@ public class TirequestwritesettingspermissionModule extends KrollModule {
 	@Kroll.onAppCreate
 	public static void onAppCreate(TiApplication app) {
 		Log.d(LCAT, "inside onAppCreate");
-		// put module init code that needs to run when the application is created
 	}
 
-    // Methods
     @Kroll.method
     private boolean hasStoragePermission() {
         if (Build.VERSION.SDK_INT < 23) {
@@ -69,6 +63,13 @@ public class TirequestwritesettingspermissionModule extends KrollModule {
         if (hasStoragePermission()) {
             return;
         }
+        /* from Ti.slack
+         
+         fokkezb
+         12:17 PM Are you sure you need TiBaseActivity for that? Can’t you just handle that within your module?
+         12:17
+         I’m no expert in this area though. I’d suggest you see on GitHub which engineers implemented it for us and ask them
+         */
         // TODO  ??? // here stopps compiler with TiBaseActivity.writeSettingsCallbackContext cannot find symbol
         if (TiBaseActivity.writeSettingsCallbackContext == null) {
             TiBaseActivity.writeSettingsCallbackContext =  getKrollObject();
